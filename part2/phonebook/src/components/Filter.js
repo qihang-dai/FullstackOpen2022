@@ -1,7 +1,8 @@
-const Filter = ({ filter, onChange }) => {
+import React from 'react'
+const Filter = ({text, filter, onChange }) => {
     return (
         <div>
-        filter shown with <input value={filter} onChange={onChange} />
+        {text} <input value={filter} onChange={onChange} />
         </div>
     )
 }
