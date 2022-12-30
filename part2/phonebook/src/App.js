@@ -6,6 +6,7 @@ import axios from 'axios'
 import React from 'react' 
 import Countries from './components/Countries'
 import phonebookService from './service/phonebookService'
+import Notification from './components/ErrorNotification'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -19,6 +20,7 @@ const App = () => {
   const [filter, setFilter] = useState('')
   const [filteredPersons, setFilteredPersons] = useState([])
   const [showAll, setShowAll] = useState(true)
+  const [message, setMessage] = useState("some error may be here")
 
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const App = () => {
     const personObject = {
       name: newName,
       number: newNumber,
-      id : persons.length + 1
+      id : newName
     }
     
     if (persons.find(person => person.name === newName)) {
@@ -56,7 +58,9 @@ const App = () => {
             setNewNumber('')
           })
           .catch(error => {
-            console.log(error)
+            setMessage(
+              `Information of ${person.name} has already been removed from server, Error: ${error.message}`
+            )
           })
       } 
     } else {
@@ -87,9 +91,29 @@ const App = () => {
         .deletePerson(id)
         .then(response => {
           setPersons(persons.filter(person => person.id !== id))
-        })
+        }).catch(error => {
+          setMessage(
+            `Information of ${name} has already been removed from server, Error: ${error.message}`
+          )
+        }
+        )
     }
   }
+
+  const Footer = () => {
+    const footerStyle = {
+      color: 'green',
+      fontStyle: 'italic',
+      fontSize: 16
+    }
+    return (
+      <div style={footerStyle}>
+        <br />
+        <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
+      </div>
+    )
+  }
+  
 
   // Countries part
 
@@ -120,6 +144,8 @@ const App = () => {
 
   return (
     <div>
+      <h2> Notification</h2>
+      <Notification message={message} />
       <h2> Countries</h2>
       <Filter text="filter countries" filter={filter2} onChange={filterCountry} />
       <Countries countries={filteredCountries} filter={filter2} handleShowClick = {setFilteredCountries} />
@@ -129,6 +155,7 @@ const App = () => {
       <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handlePersonChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
       <Persons persons={persons} showAll={showAll} filteredPersons={filteredPersons} handleDelete = {handleDelete} />
+      <Footer />
     </div>
   )
 }

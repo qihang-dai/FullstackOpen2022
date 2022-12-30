@@ -4,8 +4,8 @@ const Persons = ({persons, showAll, filteredPersons, handleDelete}) => {
         <div>
         <ul>
         {showAll ? 
-        persons.map(person => <li key={person.id}>{person.name} {person.number} <button onClick={() => handleDelete(person.id, person.name)}>delete</button></li>): 
-        filteredPersons.map(person => <li key={person.id}>{person.name} {person.number} <button onClick={() => handleDelete(person.id, person.name)}>delete</button></li>)}
+        persons.map(person => <li  key={person.id}>{person.name} {person.number} <button onClick={() => handleDelete(person.id, person.name)}>delete</button></li>): 
+        filteredPersons.map(person => <li className='note'  key={person.id}>{person.name} {person.number} <button onClick={() => handleDelete(person.id, person.name)}>delete</button></li>)}
       </ul>
         </div>
     ) 
