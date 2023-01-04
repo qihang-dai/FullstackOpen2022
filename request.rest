@@ -1,0 +1,20 @@
+PUT http://localhost:3001/api/persons/63b39ba79b5c804d687974ea
+content-type: application/json
+
+{"name":"","number":"","id":"63b39ba79b5c804d687974ea"}
+
+###
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{"name":"dai qihang","number":"1278"}
+
+###
+
+GET http://ahgdyycc.fly.dev
+
+###
+POST http://ahgdyycc.fly.dev/api/persons
+content-type: application/json
+
+{"name":"dai qihang","number":"9999999999"}

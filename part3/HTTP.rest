@@ -12,8 +12,9 @@ GET http://localhost:3001/api/persons
 POST http://localhost:3001/api/persons/ HTTP/1.1
 content-type: application/json
 
-{
-    "name": "test",
-    "number": "12322"
+{   
+    "name": "aaaaaa",
+    "number": "12345678",
+    "id": "63b3d420f39bf55c978bcbfe"
 }
 

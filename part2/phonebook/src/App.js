@@ -54,8 +54,6 @@ const App = () => {
           .update(person.id, changedPerson)
           .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
-            setNewName('')
-            setNewNumber('')
           })
           .catch(error => {
             setMessage(
@@ -68,11 +66,14 @@ const App = () => {
         .create(personObject)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
-          setNewName('')
-          setNewNumber('')
-        }
-        )
+        }).catch(error => {
+          setMessage(
+            `Error: ${error.response.data.error} Message: ${error.message}}`
+          )
+        })
     }
+    setNewName('')
+    setNewNumber('')
   }
 
   const handlePersonChange = (event) => {
@@ -91,12 +92,7 @@ const App = () => {
         .deletePerson(id)
         .then(response => {
           setPersons(persons.filter(person => person.id !== id))
-        }).catch(error => {
-          setMessage(
-            `Information of ${name} has already been removed from server, Error: ${error.message}`
-          )
-        }
-        )
+        })
     }
   }
 
