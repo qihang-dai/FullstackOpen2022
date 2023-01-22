@@ -2,8 +2,52 @@ POST http://localhost:3003/api/blogs
 content-Type: application/json
 
 {
-  "title": "My first blog",
+  "title": "My second blog",
   "author": "John Doe",
   "url": "http://example.com",
   "likes": 0
 }
+
+### create user
+POST http://localhost:3003/api/users
+content-Type: application/json
+
+{
+  "username": "ahgdyycc",
+  "name": "John dau",
+  "password": "password"
+}
+
+### get all users
+GET http://localhost:3003/api/users
+
+### login
+POST http://localhost:3003/api/login
+content-Type: application/json
+
+{
+  "username": "ahgdyycc",
+  "password": "password"
+}
+
+### add blog with token
+POST http://localhost:3003/api/blogs
+content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFoZ2R5eWNjIiwiaWQiOiI2M2NjZTNiOTE2ODM3NThhNWI3NzVhN2MiLCJpYXQiOjE2NzQzNzMxNDYsImV4cCI6MTY3NDM3Njc0Nn0._Q8gab_Gt8siyupBlOsRJ8ncCsiD0ruviCFrLQ6niDQ
+
+{
+  "title": "another blog",
+  "author": "John Doe",
+  "url": "http://example.com",
+  "likes": 0
+}
+
+### delete the user's blog
+DELETE http://localhost:3003/api/blogs/63cce86f6a3bcf9b62eeffd9
+content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFoZ2R5eWNjIiwiaWQiOiI2M2NjZTNiOTE2ODM3NThhNWI3NzVhN2MiLCJpYXQiOjE2NzQzNzMxNDYsImV4cCI6MTY3NDM3Njc0Nn0._Q8gab_Gt8siyupBlOsRJ8ncCsiD0ruviCFrLQ6niDQ
+
+### delete blogs that are not owned by the user
+DELETE http://localhost:3003/api/blogs/63cce585f00c3f54f44eb054
+content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFoZ2R5eWNjIiwiaWQiOiI2M2NjZTNiOTE2ODM3NThhNWI3NzVhN2MiLCJpYXQiOjE2NzQzNzMxNDYsImV4cCI6MTY3NDM3Njc0Nn0._Q8gab_Gt8siyupBlOsRJ8ncCsiD0ruviCFrLQ6niDQ
