@@ -18,6 +18,7 @@ app.use(requestLogger)
 app.use(cors())
 app.use(express.static('build'))
 
+// eslint-disable-next-line no-unused-vars
 morgan.token('body', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
