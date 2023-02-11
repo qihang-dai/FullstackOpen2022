@@ -23,7 +23,7 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).json({ error: error.message })
   } else if (error.name === 'JsonWebTokenError') {
     return response.status(401).send({
-      error: error.message
+      error: "json web token error"
     })
   } else if (error.name === 'TokenExpiredError') {
     return response.status(401).json({
@@ -48,8 +48,6 @@ const userExtractor = async (request, response, next) => {
   if (!token || !decodedToken.id) {
     return response.status(401).json({ error: 'token missing or invalid' })
   }
-  // console.log("user successfully extracted")
-  // console.log("token: ", token)
   const user = await User.findById(decodedToken.id)
   request.user = user
   next()
